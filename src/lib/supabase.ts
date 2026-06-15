@@ -1,8 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://ncpbvodizzlccghchrgp.supabase.co';
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5jcGJ2b2RpenpsY2NnaGNocmdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyOTE3NjUsImV4cCI6MjA4OTg2Nzc2NX0.rIze_STnLPyvvIwx5YJ8m2vofU-3U5vS0OIGBzQuagg';
-
-// We hardcode the URL and Key since it's a completely static site and RLS/public reads are configured directly on Supabase.
-// Using env variables is normally preferred but hardcoding is fine for a client-only exported XV invitation where the anon key is public anyway.
+const supabaseUrl = 'https://ohzimevkczcgmhpcozmj.supabase.co';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oemltZXZrY3pjZ21ocGNvem1qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1NDgwMTIsImV4cCI6MjA5NzEyNDAxMn0.Pw1o21Mi6wHj6dDNR7_LR4h_JKUYLEHcuupaRJ-f_cs';
+// La anon key es pública por diseño — el panel admin usa contraseña client-side ("Lia15")
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);

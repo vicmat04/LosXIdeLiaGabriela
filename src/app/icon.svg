@@ -1,32 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <defs>
-    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fff4cc" />
-      <stop offset="50%" stop-color="#d4af37" />
-      <stop offset="100%" stop-color="#997a00" />
-    </linearGradient>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#0a1208" />
-      <stop offset="100%" stop-color="#142611" />
+    <radialGradient id="bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0D1B2A"/>
+      <stop offset="100%" stop-color="#060E1A"/>
+    </radialGradient>
+    <linearGradient id="letter" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F1CF65"/>
+      <stop offset="50%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#89CFF0"/>
     </linearGradient>
   </defs>
-  
-  <!-- Fondo verde musgo oscuro -->
-  <rect width="100" height="100" rx="30" fill="url(#bg)"/>
-  
-  <!-- Anillos dorados concéntricos -->
-  <circle cx="50" cy="50" r="42" stroke="url(#gold)" stroke-width="2" fill="none"/>
-  <circle cx="50" cy="50" r="36" stroke="url(#gold)" stroke-width="1.5" stroke-dasharray="3 4" fill="none"/>
-  
-  <!-- Texto "A" -->
-  <text x="50" y="65" font-family="'Times New Roman', serif" font-size="44" font-weight="bold" fill="url(#gold)" text-anchor="middle">
-    A
-  </text>
-  
-  <!-- Detalles de hojas/coronas doradas -->
-  <path d="M 40 18 C 45 12, 55 12, 60 18" stroke="url(#gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <path d="M 45 13 L 50 8 L 55 13" stroke="url(#gold)" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
-  
-  <path d="M 43 82 C 47 86, 53 86, 57 82" stroke="url(#gold)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <circle cx="50" cy="88" r="1.5" fill="url(#gold)"/>
+  <!-- Fondo circular -->
+  <circle cx="50" cy="50" r="48" fill="url(#bg)" stroke="#D4AF37" stroke-width="1.5" opacity="0.8"/>
+  <!-- Corona pequeña arriba -->
+  <path d="M35 30 L40 20 L50 26 L60 20 L65 30 Z" fill="#D4AF37" opacity="0.9"/>
+  <!-- Letra L -->
+  <text
+    x="50" y="72"
+    text-anchor="middle"
+    font-family="Georgia, serif"
+    font-size="44"
+    font-style="italic"
+    fill="url(#letter)"
+    filter="drop-shadow(0 0 4px rgba(212,175,55,0.6))"
+  >L</text>
 </svg>

@@ -1,23 +1,51 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import LeafReveal from "@/components/LeafReveal";
 import Fireflies from "@/components/Fireflies";
 import PhotoGallery from "@/components/PhotoGallery";
 import Countdown from "@/components/Countdown";
 import AudioPlayer from "@/components/AudioPlayer";
-import Itinerary, { eucharistEvent, receptionEvent, receptionTimeline } from "@/components/Itinerary";
+import Itinerary, { receptionEvent } from "@/components/Itinerary";
 import WhatsAppRSVP from "@/components/WhatsAppRSVP";
 import DressCode from "@/components/DressCode";
 import Gifts from "@/components/Gifts";
 import VerticalTimeline from "@/components/VerticalTimeline";
 import AdminPanel from "@/components/AdminPanel";
+import ClockDecoration from "@/components/ClockDecoration";
 
 export default function Home() {
   const [isRevealed, setIsRevealed] = useState(false);
   const [secretClicks, setSecretClicks] = useState(0);
   const [showAdmin, setShowAdmin] = useState(false);
+  const [showRSVP, setShowRSVP] = useState(false);
+  const footerRef = useRef<HTMLDivElement>(null);
+
+  // ── Observamos el final de la página para mostrar el RSVP ──
+  useEffect(() => {
+    if (!isRevealed) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShowRSVP(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const currentSentinel = footerRef.current;
+    if (currentSentinel) {
+      observer.observe(currentSentinel);
+    }
+
+    return () => {
+      if (currentSentinel) {
+        observer.unobserve(currentSentinel);
+      }
+    };
+  }, [isRevealed]);
 
   const handleSecretClick = () => {
     setSecretClicks(prev => {
@@ -30,18 +58,18 @@ export default function Home() {
   };
 
   // ──────────────────────────────────────────────────────────────
-  //  FECHA DEL EVENTO: 18 de abril de 2026 a las 7:30 PM (Recepción)
+  //  FECHA DEL EVENTO: 11 de julio de 2026 a las 5:00 PM (Recepción)
   // ──────────────────────────────────────────────────────────────
-  const eventDate = "2026-04-18T19:30:00";
+  const eventDate = "2026-07-11T17:00:00";
 
   return (
     <main className="relative min-h-screen w-full pb-32 overflow-x-hidden">
 
-      {/* ── Foto de fondo fija (Ana Victoria) ── */}
+      {/* ── Foto de fondo fija (Lía Gabriela) ── */}
       <div
         className="fixed inset-0 z-[-3] pointer-events-none"
         style={{
-          backgroundImage: "url('/photos/HEN_6346.jpg')",
+          backgroundImage: "url('/photos/HEN_5162.jpg')",
           backgroundSize: "auto 100vh",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
@@ -49,19 +77,38 @@ export default function Home() {
       />
 
       {/* ── Fondo degradado base (sobre la foto) ── */}
-      <div className="fixed inset-0 z-[-2] bg-gradient-to-b from-[#060d04]/85 via-[#0d1a0a]/80 to-[#02060a]/90" />
+      <div
+        className="fixed inset-0 z-[-2]"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(6,14,26,0.88) 0%, rgba(13,27,42,0.82) 50%, rgba(6,14,26,0.93) 100%)",
+        }}
+      />
 
-      {/* ── Nebulosa de color ambiental ── */}
+      {/* ── Nebulosa de color ambiental — tonos cuento de hadas ── */}
       <div className="fixed inset-0 z-[-1] pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full bg-moss-green/10 blur-[120px]" />
-        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-deep-purple/20 blur-[100px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full bg-gold/5 blur-[80px]" />
+        <div
+          className="absolute top-0 left-1/4 w-96 h-96 rounded-full blur-[120px]"
+          style={{ background: "rgba(137, 207, 240, 0.08)" }}
+        />
+        <div
+          className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full blur-[100px]"
+          style={{ background: "rgba(13, 27, 42, 0.6)" }}
+        />
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full blur-[80px]"
+          style={{ background: "rgba(212, 175, 55, 0.04)" }}
+        />
+        <div
+          className="absolute top-1/4 right-10 w-48 h-48 rounded-full blur-[90px]"
+          style={{ background: "rgba(137, 207, 240, 0.05)" }}
+        />
       </div>
 
-      {/* ── Luciérnagas ── */}
+      {/* ── Polvo de hadas ── */}
       <Fireflies />
 
-      {/* ── Pantalla de apertura con hojas ── */}
+      {/* ── Pantalla de apertura con puertas de palacio ── */}
       <LeafReveal onReveal={() => setIsRevealed(true)} />
 
       {/* ── Contenido principal (se revela tras la animación) ── */}
@@ -78,24 +125,59 @@ export default function Home() {
           {/* ────────────────────────────────────────────────────── */}
           {/*  HERO — Encabezado principal                           */}
           {/* ────────────────────────────────────────────────────── */}
-          <section className="flex flex-col items-center justify-center text-center px-6 pt-24 pb-12 min-h-[70vh]">
-            {/* Ornamento floral */}
+          <section className="flex flex-col items-center justify-center text-center px-6 pt-24 pb-12 min-h-[75vh]">
+
+            {/* Ornamento con corona — trigger secreto del panel admin */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 1 }}
-              className="text-gold-light text-2xl tracking-[0.3em] mb-4 select-none cursor-pointer"
+              className="text-2xl tracking-[0.3em] mb-4 select-none cursor-pointer"
+              style={{ color: "rgba(212,175,55,0.7)" }}
               onClick={handleSecretClick}
               aria-hidden
             >
-              ✦ ❧ ✦
+              ✦ 👑 ✦
             </motion.div>
+
+            {/* Bendición de los padres */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 1 }}
+              className="text-xs tracking-[0.3em] uppercase mb-1"
+              style={{
+                fontFamily: "var(--font-inter)",
+                color: "rgba(137,207,240,0.6)",
+              }}
+            >
+              Con la bendición de Dios y el amor de
+            </motion.p>
 
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 1 }}
-              className="font-sans text-xs tracking-[0.4em] uppercase text-moss-light mb-3"
+              className="text-sm mb-5"
+              style={{
+                fontFamily: "var(--font-cormorant)",
+                fontStyle: "italic",
+                color: "rgba(212,175,55,0.65)",
+              }}
+            >
+              María Calvo &amp; Medardo Moreno
+            </motion.p>
+
+            {/* Subtítulo */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 1 }}
+              className="text-xs tracking-[0.4em] uppercase mb-3"
+              style={{
+                fontFamily: "var(--font-inter)",
+                color: "rgba(137,207,240,0.55)",
+              }}
             >
               Te invito a celebrar
             </motion.p>
@@ -103,40 +185,57 @@ export default function Home() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.6, duration: 1 }}
-              className="font-serif italic text-3xl md:text-4xl text-gold/80 mb-4"
+              transition={{ delay: 0.7, duration: 1 }}
+              className="italic text-3xl md:text-4xl mb-4"
+              style={{
+                fontFamily: "var(--font-cormorant)",
+                color: "rgba(212,175,55,0.75)",
+              }}
             >
               Mis XV Años
             </motion.p>
 
+            {/* Nombre principal con Great Vibes */}
             <motion.h1
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8, duration: 1.2, ease: "easeOut" }}
-              className="text-5xl md:text-7xl text-gold-light mb-6 leading-tight tracking-wide [animation:shimmer_3s_ease-in-out_infinite]"
+              transition={{ delay: 0.9, duration: 1.2, ease: "easeOut" }}
+              className="text-6xl md:text-8xl mb-6 leading-tight [animation:shimmer_3s_ease-in-out_infinite]"
               style={{
-                fontFamily: "var(--font-cinzel)",
-                textShadow: "0 0 20px rgba(212,175,55,0.5), 0 0 60px rgba(212,175,55,0.2)",
+                fontFamily: "var(--font-great-vibes)",
+                color: "#F1CF65",
+                textShadow:
+                  "0 0 20px rgba(212,175,55,0.5), 0 0 60px rgba(137,207,240,0.15), 0 0 100px rgba(212,175,55,0.2)",
               }}
             >
-              Ana Victoria
+              Lía Gabriela
             </motion.h1>
 
+            {/* Línea divisora brillante */}
             <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
-              transition={{ delay: 1.1, duration: 1 }}
-              className="w-40 h-px bg-gradient-to-r from-transparent via-gold to-transparent mb-6"
+              transition={{ delay: 1.2, duration: 1 }}
+              className="w-40 h-px mb-6"
+              style={{
+                background:
+                  "linear-gradient(to right, transparent, #D4AF37, #89CFF0, #D4AF37, transparent)",
+              }}
             />
 
+            {/* Quote — cuento de hadas */}
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.3, duration: 1 }}
-              className="font-serif italic text-base md:text-lg text-foreground/70 max-w-sm leading-relaxed"
+              transition={{ delay: 1.4, duration: 1 }}
+              className="italic text-base md:text-lg max-w-sm leading-relaxed"
+              style={{
+                fontFamily: "var(--font-cormorant)",
+                color: "rgba(236,240,244,0.65)",
+              }}
             >
-              &ldquo;Hay momentos que son especiales por sí solos, pero
-              compartirlos contigo los hace eternos.&rdquo;
+              &ldquo;Desde el primer momento en que llegaste a nuestras vidas,
+              supimos que sería una historia llena de amor.&rdquo;
             </motion.p>
 
             {/* ── Fecha con halo luminoso ── */}
@@ -148,34 +247,49 @@ export default function Home() {
               className="relative flex flex-col items-center justify-center mt-8 mb-6"
             >
               {/* Halo de luz difusa detrás */}
-              <div className="absolute w-64 h-16 rounded-full bg-gold/20 blur-[48px] pointer-events-none" />
-              <div className="absolute w-40 h-10 rounded-full bg-gold/30 blur-[24px] pointer-events-none" />
+              <div
+                className="absolute w-64 h-16 rounded-full pointer-events-none"
+                style={{ background: "rgba(137,207,240,0.12)", filter: "blur(48px)" }}
+              />
+              <div
+                className="absolute w-40 h-10 rounded-full pointer-events-none"
+                style={{ background: "rgba(212,175,55,0.2)", filter: "blur(24px)" }}
+              />
 
               {/* Líneas decorativas */}
               <div className="flex items-center gap-3 mb-1">
-                <div className="w-12 h-px bg-gradient-to-r from-transparent to-gold/50" />
-                <span className="text-gold/50 text-xs tracking-[0.3em] select-none">✦</span>
-                <div className="w-12 h-px bg-gradient-to-l from-transparent to-gold/50" />
+                <div
+                  className="w-12 h-px"
+                  style={{ background: "linear-gradient(to right, transparent, rgba(212,175,55,0.5))" }}
+                />
+                <span className="text-xs tracking-[0.3em] select-none" style={{ color: "rgba(212,175,55,0.5)" }}>✦</span>
+                <div
+                  className="w-12 h-px"
+                  style={{ background: "linear-gradient(to left, transparent, rgba(212,175,55,0.5))" }}
+                />
               </div>
 
               {/* Fecha */}
               <p
-                className="relative font-serif text-2xl md:text-3xl text-gold-light tracking-widest"
+                className="relative text-2xl md:text-3xl tracking-widest"
                 style={{
+                  fontFamily: "var(--font-cormorant)",
+                  color: "#F1CF65",
                   textShadow:
-                    "0 0 18px rgba(212,175,55,0.7), 0 0 48px rgba(212,175,55,0.3)",
+                    "0 0 18px rgba(212,175,55,0.7), 0 0 48px rgba(137,207,240,0.2)",
                 }}
               >
-                18 de abril · 2026
+                11 de julio · 2026
               </p>
             </motion.div>
 
-            {/* Ornamento floral inferior */}
+            {/* Ornamento inferior */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.5, duration: 1 }}
-              className="text-gold/40 text-xl tracking-[0.3em] mt-2 select-none"
+              transition={{ delay: 1.6, duration: 1 }}
+              className="text-xl tracking-[0.3em] mt-2 select-none"
+              style={{ color: "rgba(212,175,55,0.35)" }}
               aria-hidden
             >
               ✦ ✦ ✦
@@ -187,35 +301,55 @@ export default function Home() {
           {/* ────────────────────────────────────────────────────── */}
           <section className="px-4 mb-4">
             <PhotoGallery />
-
           </section>
 
           {/* Separador decorativo */}
-          <div className="w-3/4 max-w-sm mx-auto h-px bg-gradient-to-r from-transparent via-gold/25 to-transparent my-12" />
+          <div
+            className="w-3/4 max-w-sm mx-auto h-px my-12"
+            style={{
+              background:
+                "linear-gradient(to right, transparent, rgba(212,175,55,0.25), rgba(137,207,240,0.2), rgba(212,175,55,0.25), transparent)",
+            }}
+          />
 
           {/* ────────────────────────────────────────────────────── */}
-          {/*  EUCARISTÍA                                             */}
-          {/* ────────────────────────────────────────────────────── */}
-          <Itinerary showTitle={false} events={[eucharistEvent]} />
-
-          {/* Separador */}
-          <div className="w-3/4 max-w-sm mx-auto h-px bg-gradient-to-r from-transparent via-gold/25 to-transparent my-12" />
-
-          {/* ────────────────────────────────────────────────────── */}
-          {/*  RECEPCIÓN                                              */}
+          {/*  RECEPCIÓN (único evento — sin misa)                   */}
           {/* ────────────────────────────────────────────────────── */}
           <Itinerary title="Recepción" showTitle={true} events={[receptionEvent]} />
 
           {/* Separador */}
-          <div className="w-3/4 max-w-sm mx-auto h-px bg-gradient-to-r from-transparent via-gold/25 to-transparent my-12" />
+          <div
+            className="w-3/4 max-w-sm mx-auto h-px my-12"
+            style={{
+              background:
+                "linear-gradient(to right, transparent, rgba(212,175,55,0.25), rgba(137,207,240,0.2), rgba(212,175,55,0.25), transparent)",
+            }}
+          />
 
           {/* ────────────────────────────────────────────────────── */}
           {/*  PROGRAMA (LÍNEA DE TIEMPO VERTICAL)                    */}
           {/* ────────────────────────────────────────────────────── */}
           <VerticalTimeline />
 
+          {/* ── Reloj decorativo — La magia comienza ── */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex justify-center my-8"
+          >
+            <ClockDecoration />
+          </motion.div>
+
           {/* Separador */}
-          <div className="w-3/4 max-w-sm mx-auto h-px bg-gradient-to-r from-transparent via-gold/25 to-transparent my-12" />
+          <div
+            className="w-3/4 max-w-sm mx-auto h-px my-12"
+            style={{
+              background:
+                "linear-gradient(to right, transparent, rgba(137,207,240,0.2), rgba(212,175,55,0.25), rgba(137,207,240,0.2), transparent)",
+            }}
+          />
 
           {/* ────────────────────────────────────────────────────── */}
           {/*  CONTADOR REGRESIVO                                     */}
@@ -225,18 +359,28 @@ export default function Home() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="font-serif text-3xl text-gold text-center mb-2"
+              className="text-3xl text-center mb-2"
+              style={{ fontFamily: "var(--font-cormorant)", color: "#D4AF37" }}
             >
               ✦ Faltan ✦
             </motion.h2>
-            <p className="font-sans text-xs text-muted tracking-widest uppercase mb-6">
-              18 de Abril · 7:30 PM
+            <p
+              className="text-xs tracking-widest uppercase mb-6"
+              style={{ fontFamily: "var(--font-inter)", color: "rgba(137,207,240,0.5)" }}
+            >
+              11 de Julio · 5:00 PM
             </p>
             <Countdown targetDate={eventDate} />
           </section>
 
           {/* Separador */}
-          <div className="w-3/4 max-w-sm mx-auto h-px bg-gradient-to-r from-transparent via-gold/25 to-transparent my-12" />
+          <div
+            className="w-3/4 max-w-sm mx-auto h-px my-12"
+            style={{
+              background:
+                "linear-gradient(to right, transparent, rgba(212,175,55,0.25), rgba(137,207,240,0.2), rgba(212,175,55,0.25), transparent)",
+            }}
+          />
 
           {/* ────────────────────────────────────────────────────── */}
           {/*  CÓDIGO DE VESTIMENTA                                   */}
@@ -244,10 +388,16 @@ export default function Home() {
           <DressCode />
 
           {/* Separador */}
-          <div className="w-3/4 max-w-sm mx-auto h-px bg-gradient-to-r from-transparent via-gold/25 to-transparent my-12" />
+          <div
+            className="w-3/4 max-w-sm mx-auto h-px my-12"
+            style={{
+              background:
+                "linear-gradient(to right, transparent, rgba(212,175,55,0.25), rgba(137,207,240,0.2), rgba(212,175,55,0.25), transparent)",
+            }}
+          />
 
           {/* ────────────────────────────────────────────────────── */}
-          {/*  CIERRE — FIRMA Y REGALOS                               */}
+          {/*  CIERRE — FIRMA, REGALOS Y FOOTER                      */}
           {/* ────────────────────────────────────────────────────── */}
           <section className="flex flex-col items-center px-4 mt-8 mb-12">
             <motion.div
@@ -257,49 +407,86 @@ export default function Home() {
               transition={{ delay: 0.5 }}
               className="pb-8 text-center"
             >
-              <div className="w-24 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent mx-auto mb-4" />
-              <p className="font-serif italic text-foreground/40 text-sm">
+              <div
+                className="w-24 h-px mx-auto mb-4"
+                style={{ background: "linear-gradient(to right, transparent, rgba(212,175,55,0.3), transparent)" }}
+              />
+              <p
+                className="italic text-sm"
+                style={{
+                  fontFamily: "var(--font-cormorant)",
+                  color: "rgba(236,240,244,0.4)",
+                }}
+              >
                 Con amor,
               </p>
               <p
-                className="font-serif text-2xl text-gold-light/70 mt-1"
-                style={{ 
-                  fontFamily: "var(--font-cinzel)",
-                  textShadow: "0 0 15px rgba(212,175,55,0.2)" 
+                className="text-4xl mt-1"
+                style={{
+                  fontFamily: "var(--font-great-vibes)",
+                  color: "rgba(241,207,101,0.65)",
+                  textShadow: "0 0 15px rgba(212,175,55,0.2)",
                 }}
               >
-                Ana Victoria
+                Lía Gabriela
               </p>
-              <p className="font-sans text-xs tracking-widest uppercase text-foreground/30 mt-2">
-                ✦ 18 · Abril · 2026 ✦
+              <p
+                className="text-xs tracking-widest uppercase mt-2"
+                style={{
+                  fontFamily: "var(--font-inter)",
+                  color: "rgba(236,240,244,0.28)",
+                }}
+              >
+                ✦ 11 · Julio · 2026 ✦
               </p>
             </motion.div>
 
             <Gifts />
-            
+
             {/* ── Marketing Footer ── */}
-            <div className="mt-12 mb-8 text-center bg-black/40 py-4 px-6 rounded-2xl border border-gold/10 inline-block">
+            <div
+              className="mt-12 mb-8 text-center py-4 px-6 rounded-2xl inline-block"
+              style={{
+                background: "rgba(0,0,0,0.4)",
+                border: "1px solid rgba(137,207,240,0.08)",
+              }}
+            >
               <a
                 href="https://wa.me/50767005805?text=Hola!%20Me%20encant%C3%B3%20esta%20invitaci%C3%B3n%20digital%20interactiva.%20Quisiera%20pedir%20informaci%C3%B3n%20para%20un%20evento."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group"
               >
-                <p className="font-sans text-[11px] text-gold-light/60 group-hover:text-gold transition-colors duration-300 leading-relaxed tracking-wider">
-                  Invitación interactiva diseñada con 💛<br/>
-                  ¿Te gustaría una para tu evento? <br className="md:hidden" />
-                  <span className="underline decoration-gold/40 underline-offset-4 text-gold-light/80 font-medium">Contáctanos aquí</span>
+                <p
+                  className="text-[11px] leading-relaxed tracking-wider transition-colors duration-300"
+                  style={{
+                    fontFamily: "var(--font-inter)",
+                    color: "rgba(137,207,240,0.5)",
+                  }}
+                >
+                  Invitación interactiva diseñada con 💙<br />
+                  ¿Te gustaría una para tu evento?{" "}
+                  <br className="md:hidden" />
+                  <span
+                    className="underline decoration-[#89CFF0]/40 underline-offset-4"
+                    style={{ color: "rgba(137,207,240,0.75)" }}
+                  >
+                    Contáctanos aquí
+                  </span>
                 </p>
               </a>
             </div>
-            
+
           </section>
+
+          {/* ── Centinela para detectar el final (RSVP) ── */}
+          <div ref={footerRef} className="h-10 w-full" aria-hidden />
 
         </motion.div>
       )}
 
-      {/* ── Botón RSVP flotante (siempre visible tras reveal) ── */}
-      {isRevealed && <WhatsAppRSVP />}
+      {/* ── Botón RSVP flotante (se muestra al llegar al final) ── */}
+      {isRevealed && <WhatsAppRSVP isVisible={showRSVP} />}
 
       {/* ── Panel Secreto de Admin ── */}
       <AdminPanel isOpen={showAdmin} onClose={() => setShowAdmin(false)} />

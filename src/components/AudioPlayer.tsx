@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { registerAudio } from "@/lib/audioControl";
 
 /**
- * AudioPlayer — Reproductor de música ambiental del Bosque Encantado.
+ * AudioPlayer — Reproductor de música ambiental del Cuento de Hadas.
  *
  * ─────────────────────────────────────────────────────────────────────
  *  🎵  PARA PERSONALIZAR LA MÚSICA:
@@ -117,18 +117,21 @@ export default function AudioPlayer({
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 1.5, duration: 0.6 }}
-        className={`fixed top-5 right-5 z-50 w-11 h-11 flex items-center justify-center rounded-full backdrop-blur-md border transition-all duration-300 ${
-          isPlaying
-            ? "bg-moss-green/70 border-gold/40 text-gold-light shadow-[0_0_15px_rgba(212,175,55,0.3)]"
-            : "bg-black/50 border-gold/20 text-foreground/50 hover:border-gold/40 hover:text-gold-light"
-        }`}
+        className="fixed top-5 right-5 z-50 w-11 h-11 flex items-center justify-center rounded-full backdrop-blur-md border transition-all duration-300"
+        style={{
+          background: isPlaying ? "rgba(13, 27, 42, 0.8)" : "rgba(0,0,0,0.5)",
+          borderColor: isPlaying ? "rgba(212,175,55,0.4)" : "rgba(212,175,55,0.2)",
+          color: isPlaying ? "#F1CF65" : "rgba(236,240,244,0.5)",
+          boxShadow: isPlaying ? "0 0 15px rgba(137,207,240,0.2), 0 0 8px rgba(212,175,55,0.2)" : "none",
+        }}
         aria-label={isPlaying ? "Pausar música" : "Reproducir música"}
         title={isPlaying ? "Pausar música" : "Reproducir música"}
       >
         {/* Anillo pulsante cuando reproduce */}
         {isPlaying && (
           <motion.div
-            className="absolute inset-0 rounded-full border border-gold/30"
+            className="absolute inset-0 rounded-full"
+            style={{ border: "1px solid rgba(137,207,240,0.3)" }}
             animate={{ scale: [1, 1.4, 1], opacity: [0.5, 0, 0.5] }}
             transition={{ duration: 2, repeat: Infinity }}
           />

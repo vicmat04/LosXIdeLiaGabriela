@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FaChurch, FaGlassCheers, FaMapMarkerAlt, FaWaze, FaUsers, FaUtensils, FaCrown, FaRing, FaMusic, FaMask, FaStar, FaConciergeBell } from "react-icons/fa";
+import { FaGlassCheers, FaMapMarkerAlt, FaWaze, FaUsers, FaCrown, FaRing, FaMusic, FaMask, FaStar, FaConciergeBell } from "react-icons/fa";
 import { motion } from "framer-motion";
 import MapModal from "./MapModal";
 
@@ -28,79 +28,62 @@ export interface Event {
  *    Waze:        https://waze.com/ul?ll=LAT,LON&navigate=yes
  * ─────────────────────────────────────────────────────────────────
  */
-export const eucharistEvent: Event = {
-  time: "Sábado 4 de abril\n6:00 PM",
-  title: "Eucaristía",
-  location: "Salón Talavera, Colegio Agustiniano, Chitré",
-  address: "Calle Francisco Audía, Chitré",
-  mapQuery: "Colegio Agustiniano Nuestra Señora del Buen Consejo Chitré",
-  gmapsLink: "https://www.google.com/maps/search/?api=1&query=Colegio+Agustiniano+Nuestra+Señora+del+Buen+Consejo+Chitré",
-  wazeLink: "https://waze.com/ul?q=Colegio%20Agustiniano%20Chitre",
-  icon: <FaChurch className="text-2xl text-gold-light" />,
-};
-
 export const receptionEvent: Event = {
-  time: "18 de abril · 7:30 PM",
+  time: "Sábado 11 de julio\n5:00 PM",
   title: "Recepción",
-  location: "Club Fulo Araúz, Chitré",
-  address: "Avenida Obaldía, Chitré",
-  mapQuery: "Club Fulo Araúz Chitré",
-  gmapsLink: "https://www.google.com/maps/search/?api=1&query=Club+Fulo+Araúz+Chitré",
-  wazeLink: "https://waze.com/ul?q=Club%20Fulo%20Arauz%20Chitre",
-  icon: <FaGlassCheers className="text-2xl text-gold-light" />,
+  location: "Eventos Carolina",
+  address: "Sigue el corazón hasta la magia ✨",
+  mapQuery: "Eventos Carolina Panamá",
+  gmapsLink: "https://maps.app.goo.gl/n6HAfN2vLJbGtxMt6?g_st=aw",
+  wazeLink: "https://waze.com/ul/hd1qv1upex",
+  icon: <FaGlassCheers className="text-2xl" style={{ color: "#F1CF65" }} />,
 };
 
 export const receptionTimeline: Event[] = [
   {
-    time: "7:00 PM",
+    time: "5:00 PM",
     title: "Recepción de invitados",
     description: "Llegada de familiares y amigos (30-45 min), música ambiental.",
-    icon: <FaUsers className="text-2xl text-gold-light" />,
-  },
-  {
-    time: "7:30 PM",
-    title: "Servida de boquitas",
-    icon: <FaUtensils className="text-2xl text-gold-light" />,
+    icon: <FaUsers className="text-2xl" style={{ color: "#F1CF65" }} />,
   },
   {
     time: "8:00 PM",
     title: "Entrada de la Quinceañera",
-    description: "Entrada oficial.",
-    icon: <FaCrown className="text-2xl text-gold-light" />,
+    description: "Entrada oficial al salón.",
+    icon: <FaCrown className="text-2xl" style={{ color: "#F1CF65" }} />,
   },
   {
     time: "8:20 PM",
     title: "Protocolo",
-    description: "Entrega del anillo, Brindis.",
-    icon: <FaRing className="text-2xl text-gold-light" />,
+    icon: <FaRing className="text-2xl" style={{ color: "#F1CF65" }} />,
   },
   {
     time: "8:40 PM",
     title: "Vals",
-    icon: <FaMusic className="text-2xl text-gold-light" />,
+    icon: <FaMusic className="text-2xl" style={{ color: "#F1CF65" }} />,
   },
   {
     time: "9:10 PM",
     title: "Buffet",
-    icon: <FaConciergeBell className="text-2xl text-gold-light" />,
+    icon: <FaConciergeBell className="text-2xl" style={{ color: "#F1CF65" }} />,
   },
   {
     time: "9:45 PM",
     title: "Baile grupal",
-    description: "Coreografía con amigos y grupo de baile.",
-    icon: <FaStar className="text-2xl text-gold-light" />,
+    description: "Coreografía con amigos.",
+    icon: <FaStar className="text-2xl" style={{ color: "#F1CF65" }} />,
   },
   {
-    time: "10:30 PM",
+    time: "10:50 PM",
     title: "Baile General",
     description: "Apertura de la pista de baile.",
-    icon: <FaMusic className="text-2xl text-gold-light" />,
+    icon: <FaMusic className="text-2xl" style={{ color: "#F1CF65" }} />,
   },
   {
     time: "11:30 PM",
     title: "Hora Loca",
-    icon: <FaMask className="text-2xl text-gold-light" />,
-  }
+    icon: <FaMask className="text-2xl" style={{ color: "#F1CF65" }} />,
+  },
 ];
 
 interface ModalState {
@@ -117,7 +100,7 @@ interface ItineraryProps {
   events?: Event[];
 }
 
-export default function Itinerary({ title = "Itinerario", showTitle = true, events = [eucharistEvent, receptionEvent] }: ItineraryProps) {
+export default function Itinerary({ title = "Itinerario", showTitle = true, events = [receptionEvent] }: ItineraryProps) {
   const [modal, setModal] = useState<ModalState | null>(null);
 
   const openModal = (evt: Event, app: "Maps" | "Waze") => {
@@ -138,7 +121,8 @@ export default function Itinerary({ title = "Itinerario", showTitle = true, even
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="font-serif text-3xl text-gold text-center mb-10"
+            className="font-serif text-3xl text-center mb-10"
+            style={{ color: "#D4AF37" }}
           >
             ✦ {title} ✦
           </motion.h2>
@@ -146,7 +130,7 @@ export default function Itinerary({ title = "Itinerario", showTitle = true, even
 
         <div className="relative">
           {/* Línea vertical decorativa */}
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-gold/10 via-gold/30 to-gold/10" />
+          <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-[#D4AF37]/10 via-[#D4AF37]/30 to-[#D4AF37]/10" />
 
           <div className="space-y-8">
             {events.map((evt, idx) => (
@@ -159,16 +143,16 @@ export default function Itinerary({ title = "Itinerario", showTitle = true, even
                 className="flex items-start gap-5"
               >
                 {/* Ícono circular */}
-                <div className="relative flex-shrink-0 w-12 h-12 rounded-full bg-moss-dark border border-gold/30 flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.15)] z-10">
+                <div className="relative flex-shrink-0 w-12 h-12 rounded-full bg-[#0D1B2A] border border-[#D4AF37]/30 flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.15)] z-10">
                   {evt.icon}
                 </div>
 
                 {/* Contenido */}
-                <div className="flex-1 bg-moss-dark/50 backdrop-blur-sm border border-moss-light/20 rounded-2xl p-5 shadow-md">
-                  <p className="font-sans text-xs uppercase tracking-widest text-gold/60 mb-1 whitespace-pre-line">
+                <div className="flex-1 bg-[#0D1B2A]/50 backdrop-blur-sm border border-[#89CFF0]/20 rounded-2xl p-5 shadow-md">
+                  <p className="font-sans text-xs uppercase tracking-widest text-[#D4AF37]/60 mb-1 whitespace-pre-line">
                     {evt.time}
                   </p>
-                  <h3 className="font-serif text-xl text-gold-light mb-1">
+                  <h3 className="font-serif text-xl text-[#F1CF65] mb-1">
                     {evt.title}
                   </h3>
                   {evt.location && (
@@ -193,7 +177,7 @@ export default function Itinerary({ title = "Itinerario", showTitle = true, even
                       {evt.gmapsLink && (
                         <button
                           onClick={() => openModal(evt, "Maps")}
-                          className="flex flex-1 items-center justify-center gap-1.5 py-2 px-3 rounded-full bg-black/40 border border-gold/25 text-gold-light hover:bg-gold hover:text-black transition-colors text-xs font-sans font-medium"
+                          className="flex flex-1 items-center justify-center gap-1.5 py-2 px-3 rounded-full bg-black/40 border border-[#D4AF37]/25 text-[#F1CF65] hover:bg-[#D4AF37] hover:text-black transition-colors text-xs font-sans font-medium"
                           aria-label={`Cómo llegar a ${evt.title} por Google Maps`}
                         >
                           <FaMapMarkerAlt />

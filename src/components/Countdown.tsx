@@ -62,10 +62,10 @@ export default function Countdown({ targetDate }: { targetDate: string }) {
           {/* Card con efecto glassmorphism */}
           <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center">
             {/* Fondo */}
-            <div className="absolute inset-0 rounded-2xl bg-moss-dark/60 backdrop-blur-md border border-gold/25 shadow-[0_0_15px_rgba(212,175,55,0.1),inset_0_0_10px_rgba(0,0,0,0.3)]" />
+            <div className="absolute inset-0 rounded-2xl bg-[#0D1B2A]/60 backdrop-blur-md border border-[#D4AF37]/25 shadow-[0_0_15px_rgba(212,175,55,0.1),inset_0_0_10px_rgba(0,0,0,0.3)]" />
             {/* Brillo superior */}
-            <div className="absolute top-0 inset-x-0 h-px rounded-full bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
-            
+            <div className="absolute top-0 inset-x-0 h-px rounded-full bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent" />
+
             {/* Número con animación al cambiar */}
             <AnimatePresence mode="popLayout">
               <motion.span
@@ -74,8 +74,8 @@ export default function Countdown({ targetDate }: { targetDate: string }) {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 12, opacity: 0 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="relative z-10 font-serif text-2xl sm:text-3xl text-gold-light"
-                style={{ textShadow: "0 0 12px rgba(212,175,55,0.5)" }}
+                className="relative z-10 font-serif text-2xl sm:text-3xl"
+                style={{ color: "#F1CF65", textShadow: "0 0 12px rgba(212,175,55,0.5)" }}
               >
                 {String(value).padStart(2, "0")}
               </motion.span>

@@ -12,12 +12,23 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-creative";
 
-/** Lista completa de fotos de la sesión de Ana Victoria */
+/** Lista completa de fotos de la sesión de Lía Gabriela */
 const photos = [
-  "/photos/HEN_6170.jpg",
-  "/photos/HEN_6174.jpg",
-  "/photos/HEN_6263.jpg",
-  "/photos/HEN_6277.jpg",
+  "/photos/HEN_5168.jpg",
+  "/photos/HEN_5182.jpg",
+  "/photos/HEN_5200.jpg",
+  "/photos/HEN_5205.jpg",
+  "/photos/HEN_5234.jpg",
+  "/photos/HEN_5260.jpg",
+  "/photos/HEN_5270.jpg",
+  "/photos/HEN_5278.jpg",
+  "/photos/HEN_5290.jpg",
+  "/photos/HEN_5296.jpg",
+  "/photos/HEN_5299.jpg",
+  "/photos/HEN_5315.jpg",
+  "/photos/HEN_5349.jpg",
+  "/photos/HEN_5395.jpg",
+  "/photos/HEN_5412.jpg",
 ];
 
 /**
@@ -36,10 +47,10 @@ export default function PhotoGallery() {
       transition={{ duration: 0.8 }}
       className="relative w-full max-w-sm mx-auto"
     >
-      {/* Marco ornamental con brillo dorado */}
-      <div className="absolute -inset-2 rounded-3xl bg-gradient-to-b from-gold/20 via-moss-light/10 to-gold/20 blur-md z-0" />
+      {/* Marco ornamental con brillo dorado y fairy-blue */}
+      <div className="absolute -inset-2 rounded-3xl bg-gradient-to-b from-[#D4AF37]/20 via-[#89CFF0]/10 to-[#D4AF37]/20 blur-md z-0" />
 
-      <div className="relative rounded-2xl overflow-hidden border border-gold/20 shadow-[0_0_40px_rgba(212,175,55,0.15)] z-10">
+      <div className="relative rounded-2xl overflow-hidden border border-[#D4AF37]/20 shadow-[0_0_40px_rgba(212,175,55,0.15)] z-10">
         <Swiper
           onSwiper={(swiper) => { swiperRef.current = swiper; }}
           modules={[Pagination, Autoplay, EffectCreative]}
@@ -66,7 +77,7 @@ export default function PhotoGallery() {
               <div className="relative w-full h-full">
                 <Image
                   src={src}
-                  alt={`Ana Victoria — Sesión de fotos ${index + 1}`}
+                  alt={`Lía Gabriela — Sesión de fotos ${index + 1}`}
                   fill
                   className="object-contain"
                   sizes="(max-width: 768px) 100vw, 384px"
@@ -85,14 +96,14 @@ export default function PhotoGallery() {
         </Swiper>
       </div>
 
-      {/* Estilos inline para los puntos de paginación */}
+      {/* Estilos inline para los puntos de paginación — fairy-blue */}
       <style>{`
         .swiper-pagination-bullet {
-          background: rgba(212, 175, 55, 0.5) !important;
+          background: rgba(137, 207, 240, 0.5) !important;
           opacity: 1 !important;
         }
         .swiper-pagination-bullet-active {
-          background: #d4af37 !important;
+          background: #89CFF0 !important;
           transform: scale(1.3);
         }
       `}</style>

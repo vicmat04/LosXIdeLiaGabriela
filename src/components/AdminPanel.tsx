@@ -28,7 +28,7 @@ export default function AdminPanel({ isOpen, onClose }: { isOpen: boolean; onClo
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === "Ana15") {
+    if (password === "Lia15") {
       setIsAuthenticated(true);
       setPassword("");
     } else {
@@ -55,7 +55,7 @@ export default function AdminPanel({ isOpen, onClose }: { isOpen: boolean; onClo
   };
 
   const handleShare = () => {
-    let text = "📋 *LISTA DE CONFIRMADOS - XV ANA VICTORIA* 📋\n\n";
+    let text = "📋 *LISTA DE CONFIRMADOS - XV LÍA GABRIELA* 📋\n\n";
     let totalAna = 0;
     let totalMama = 0;
 
@@ -80,13 +80,13 @@ export default function AdminPanel({ isOpen, onClose }: { isOpen: boolean; onClo
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="bg-[#0a1208] border border-gold/30 rounded-2xl w-full max-w-lg max-h-[90vh] overflow-hidden flex flex-col shadow-2xl"
+        className="bg-[#060E1A] border border-[#D4AF37]/30 rounded-2xl w-full max-w-lg max-h-[90vh] overflow-hidden flex flex-col shadow-2xl"
       >
-        <div className="flex justify-between items-center p-4 border-b border-gold/20 bg-black/20">
-          <h2 className="font-serif text-xl text-gold-light flex items-center gap-2">
+        <div className="flex justify-between items-center p-4 border-b border-[#D4AF37]/20 bg-black/20">
+          <h2 className="font-serif text-xl text-[#F1CF65] flex items-center gap-2">
             <FaLock size={14} /> Panel Secreto
           </h2>
-          <button onClick={onClose} className="p-2 text-foreground/50 hover:text-gold transition-colors">
+          <button onClick={onClose} className="p-2 text-foreground/50 hover:text-[#D4AF37] transition-colors">
             <FaTimes />
           </button>
         </div>
@@ -102,11 +102,11 @@ export default function AdminPanel({ isOpen, onClose }: { isOpen: boolean; onClo
                 placeholder="Contraseña"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-black/40 border border-gold/30 rounded-xl px-4 py-2 text-gold-light placeholder:text-gold/30 focus:outline-none focus:border-gold text-center"
+                className="w-full bg-black/40 border border-[#D4AF37]/30 rounded-xl px-4 py-2 text-[#F1CF65] placeholder:text-[#D4AF37]/30 focus:outline-none focus:border-[#D4AF37] text-center"
               />
               <button
                 type="submit"
-                className="bg-gold/20 hover:bg-gold/30 text-gold-light border border-gold/40 py-2 rounded-xl transition-all"
+                className="bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 text-[#F1CF65] border border-[#D4AF37]/40 py-2 rounded-xl transition-all"
               >
                 Entrar
               </button>
@@ -114,8 +114,8 @@ export default function AdminPanel({ isOpen, onClose }: { isOpen: boolean; onClo
           </div>
         ) : (
           <div className="flex flex-col flex-1 overflow-hidden">
-            <div className="p-4 flex justify-between items-center gap-2 flex-wrap bg-moss-dark/20">
-              <span className="text-sm text-gold-light font-medium">
+            <div className="p-4 flex justify-between items-center gap-2 flex-wrap bg-[#0D1B2A]/20">
+              <span className="text-sm text-[#F1CF65] font-medium">
                 Total Confirmados: {guests.length}
               </span>
               <button
@@ -134,14 +134,14 @@ export default function AdminPanel({ isOpen, onClose }: { isOpen: boolean; onClo
                 <p className="text-center text-foreground/50 text-sm">Aún no hay confirmaciones.</p>
               ) : (
                 guests.map((g) => (
-                  <div key={g.id} className="bg-black/40 border border-moss-light/20 p-3 rounded-xl flex items-center justify-between gap-3">
+                  <div key={g.id} className="bg-black/40 border border-[#89CFF0]/20 p-3 rounded-xl flex items-center justify-between gap-3">
                     <div className="flex-1 min-w-0">
                       {editingId === g.id ? (
                         <input
                           type="text"
                           value={editName}
                           onChange={(e) => setEditName(e.target.value)}
-                          className="w-full bg-transparent border-b border-gold text-gold-light outline-none text-sm"
+                          className="w-full bg-transparent border-b border-[#D4AF37] text-[#F1CF65] outline-none text-sm"
                           autoFocus
                         />
                       ) : (
@@ -160,7 +160,7 @@ export default function AdminPanel({ isOpen, onClose }: { isOpen: boolean; onClo
                           <FaSave size={14} />
                         </button>
                       ) : (
-                        <button onClick={() => startEditing(g)} className="p-2 text-gold/60 hover:text-gold hover:bg-gold/10 rounded-full transition-colors">
+                        <button onClick={() => startEditing(g)} className="p-2 text-[#D4AF37]/60 hover:text-[#D4AF37] hover:bg-[#D4AF37]/10 rounded-full transition-colors">
                           <FaEdit size={14} />
                         </button>
                       )}
