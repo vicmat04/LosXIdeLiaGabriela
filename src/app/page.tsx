@@ -62,6 +62,18 @@ export default function Home() {
   // ──────────────────────────────────────────────────────────────
   const eventDate = "2026-07-11T17:00:00";
 
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.9,
+        ease: [0.215, 0.61, 0.355, 1] as const, // easeOutCubic
+      },
+    },
+  };
+
   return (
     <main className="relative min-h-screen w-full pb-32 overflow-x-hidden">
 
@@ -114,9 +126,18 @@ export default function Home() {
       {/* ── Contenido principal (se revela tras la animación) ── */}
       {isRevealed && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          initial="hidden"
+          animate="show"
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.16,
+                delayChildren: 0.1,
+              },
+            },
+          }}
           className="relative z-10"
         >
           {/* ── Reproductor de audio ── */}
@@ -129,9 +150,7 @@ export default function Home() {
 
             {/* Ornamento con corona — trigger secreto del panel admin */}
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 1 }}
+              variants={itemVariants}
               className="text-2xl tracking-[0.3em] mb-4 select-none cursor-pointer"
               style={{ color: "rgba(212,175,55,0.7)" }}
               onClick={handleSecretClick}
@@ -142,9 +161,7 @@ export default function Home() {
 
             {/* Bendición de los padres */}
             <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4, duration: 1 }}
+              variants={itemVariants}
               className="text-xs tracking-[0.3em] uppercase mb-1"
               style={{
                 fontFamily: "var(--font-inter)",
@@ -155,9 +172,7 @@ export default function Home() {
             </motion.p>
 
             <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 1 }}
+              variants={itemVariants}
               className="text-sm mb-5"
               style={{
                 fontFamily: "var(--font-cormorant)",
@@ -170,9 +185,7 @@ export default function Home() {
 
             {/* Subtítulo */}
             <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6, duration: 1 }}
+              variants={itemVariants}
               className="text-xs tracking-[0.4em] uppercase mb-3"
               style={{
                 fontFamily: "var(--font-inter)",
@@ -183,9 +196,7 @@ export default function Home() {
             </motion.p>
 
             <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7, duration: 1 }}
+              variants={itemVariants}
               className="italic text-3xl md:text-4xl mb-4"
               style={{
                 fontFamily: "var(--font-cormorant)",
@@ -197,9 +208,7 @@ export default function Home() {
 
             {/* Nombre principal con Great Vibes */}
             <motion.h1
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.9, duration: 1.2, ease: "easeOut" }}
+              variants={itemVariants}
               className="text-6xl md:text-8xl mb-6 leading-tight [animation:shimmer_3s_ease-in-out_infinite]"
               style={{
                 fontFamily: "var(--font-great-vibes)",
@@ -213,9 +222,10 @@ export default function Home() {
 
             {/* Línea divisora brillante */}
             <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ delay: 1.2, duration: 1 }}
+              variants={{
+                hidden: { scaleX: 0, opacity: 0 },
+                show: { scaleX: 1, opacity: 1, transition: { duration: 1.2, ease: "easeOut" } }
+              }}
               className="w-40 h-px mb-6"
               style={{
                 background:
@@ -225,9 +235,7 @@ export default function Home() {
 
             {/* Quote — cuento de hadas */}
             <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.4, duration: 1 }}
+              variants={itemVariants}
               className="italic text-base md:text-lg max-w-sm leading-relaxed"
               style={{
                 fontFamily: "var(--font-cormorant)",
@@ -240,10 +248,7 @@ export default function Home() {
 
             {/* ── Fecha con halo luminoso ── */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.9, ease: "easeOut" }}
+              variants={itemVariants}
               className="relative flex flex-col items-center justify-center mt-8 mb-6"
             >
               {/* Halo de luz difusa detrás */}
@@ -285,9 +290,7 @@ export default function Home() {
 
             {/* Ornamento inferior */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.6, duration: 1 }}
+              variants={itemVariants}
               className="text-xl tracking-[0.3em] mt-2 select-none"
               style={{ color: "rgba(212,175,55,0.35)" }}
               aria-hidden

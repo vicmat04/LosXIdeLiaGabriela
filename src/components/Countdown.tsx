@@ -12,7 +12,8 @@ interface TimeLeft {
 
 /**
  * Countdown — Contador regresivo mágico hacia la fecha del evento.
- * Cada unidad tiene un efecto flip sutil cuando cambia el valor.
+ * Rediseñado como esferas de cristal circulares con bordes de aura giratoria,
+ * iconos superiores y destellos mágicos (flash scale) al cambiar los valores.
  */
 export default function Countdown({ targetDate }: { targetDate: string }) {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
@@ -48,45 +49,94 @@ export default function Countdown({ targetDate }: { targetDate: string }) {
   // Evitar mismatch de hidratación
   if (!isMounted) return null;
 
-  const units: Array<{ label: string; value: number }> = [
-    { label: "Días", value: timeLeft.dias },
-    { label: "Horas", value: timeLeft.horas },
-    { label: "Minutos", value: timeLeft.minutos },
-    { label: "Segundos", value: timeLeft.segundos },
+  const units: Array<{ label: string; value: number; icon: string }> = [
+    { label: "Días", value: timeLeft.dias, icon: "🌙" },
+    { label: "Horas", value: timeLeft.horas, icon: "⭐" },
+    { label: "Minutos", value: timeLeft.minutos, icon: "✨" },
+    { label: "Segundos", value: timeLeft.segundos, icon: "⏳" },
   ];
 
   return (
-    <div className="flex justify-center gap-3 sm:gap-5">
-      {units.map(({ label, value }) => (
-        <div key={label} className="flex flex-col items-center">
-          {/* Card con efecto glassmorphism */}
-          <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center">
-            {/* Fondo */}
-            <div className="absolute inset-0 rounded-2xl bg-[#0D1B2A]/60 backdrop-blur-md border border-[#D4AF37]/25 shadow-[0_0_15px_rgba(212,175,55,0.1),inset_0_0_10px_rgba(0,0,0,0.3)]" />
-            {/* Brillo superior */}
-            <div className="absolute top-0 inset-x-0 h-px rounded-full bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent" />
+    <div className="flex flex-col items-center gap-5 w-full max-w-sm mx-auto py-2">
+      {/* Encabezado del contador */}
+      <div className="text-center">
+        <span 
+          className="text-2xl tracking-wide block mb-1" 
+          style={{ 
+            fontFamily: "var(--font-great-vibes)", 
+            color: "#F1CF65", 
+            textShadow: "0 0 15px rgba(241, 207, 101, 0.4)" 
+          }}
+        >
+          La magia comienza en...
+        </span>
+      </div>
 
-            {/* Número con animación al cambiar */}
-            <AnimatePresence mode="popLayout">
-              <motion.span
-                key={value}
-                initial={{ y: -12, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: 12, opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="relative z-10 font-serif text-2xl sm:text-3xl"
-                style={{ color: "#F1CF65", textShadow: "0 0 12px rgba(212,175,55,0.5)" }}
+      {/* Esferas de la cuenta regresiva */}
+      <div className="flex justify-center gap-3.5 sm:gap-5">
+        {units.map(({ label, value, icon }) => (
+          <div key={label} className="flex flex-col items-center relative group">
+            
+            {/* Ícono temático superior flotando */}
+            <span className="text-xs mb-1.5 opacity-80 group-hover:scale-110 transition-transform duration-300">
+              {icon}
+            </span>
+
+            {/* Esfera circular con borde de aura giratoria */}
+            <div className="relative w-[70px] h-[70px] sm:w-[82px] sm:h-[82px] flex items-center justify-center rounded-full overflow-hidden">
+              
+              {/* Borde con gradiente cónico giratorio continuo (Aura Mágica) */}
+              <div 
+                className="absolute inset-0 rounded-full animate-[spin_7s_linear_infinite]"
+                style={{
+                  background: "conic-gradient(from 0deg, #D4AF37 0%, rgba(224,224,224,0.1) 25%, #89CFF0 50%, rgba(212,175,55,0.1) 75%, #D4AF37 100%)",
+                }}
+              />
+
+              {/* Centro de la esfera (Cristal oscuro con radial gradient y blur) */}
+              <div 
+                className="absolute inset-[2px] rounded-full z-10 flex items-center justify-center overflow-hidden"
+                style={{
+                  background: "radial-gradient(circle at center, #0D1B2A 50%, #060E1A 100%)",
+                  boxShadow: "inset 0 0 12px rgba(0,0,0,0.7), 0 0 8px rgba(137,207,240,0.15)",
+                }}
               >
-                {String(value).padStart(2, "0")}
-              </motion.span>
-            </AnimatePresence>
-          </div>
+                {/* Reflejo de cristal de la esfera en el borde superior */}
+                <div 
+                  className="absolute top-0 inset-x-0 h-1/2 w-full opacity-10 pointer-events-none rounded-t-full bg-gradient-to-b from-white to-transparent" 
+                />
 
-          <span className="mt-2 font-sans text-[10px] sm:text-xs uppercase tracking-widest text-foreground/50">
-            {label}
-          </span>
-        </div>
-      ))}
+                {/* Número con animación de destello (Flash Scale) al cambiar */}
+                <AnimatePresence mode="popLayout">
+                  <motion.span
+                    key={value}
+                    initial={{ scale: 1.35, opacity: 0, filter: "brightness(2)" }}
+                    animate={{ scale: 1, opacity: 1, filter: "brightness(1)" }}
+                    exit={{ scale: 0.8, opacity: 0 }}
+                    transition={{ duration: 0.45, ease: "easeOut" }}
+                    className="relative z-20 font-medium text-xl sm:text-2xl select-none"
+                    style={{ 
+                      color: "#E8E8E8", 
+                      fontFamily: "var(--font-display)", 
+                      textShadow: "0 0 10px rgba(232, 232, 232, 0.45), 0 0 22px rgba(137, 207, 240, 0.3)" 
+                    }}
+                  >
+                    {String(value).padStart(2, "0")}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+            </div>
+
+            {/* Label de la unidad en oro/champán tenue */}
+            <span 
+              className="mt-2.5 font-medium text-[9px] sm:text-[10px] uppercase tracking-[0.2em]"
+              style={{ fontFamily: "var(--font-inter)", color: "rgba(241,207,101,0.55)" }}
+            >
+              {label}
+            </span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
