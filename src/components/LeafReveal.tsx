@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import ClockDecoration from "@/components/ClockDecoration";
 
 interface BurstParticle {
   id: number;
@@ -211,24 +212,13 @@ export default function LeafReveal({ onReveal }: { onReveal: () => void }) {
                 <span>✦</span>
               </motion.div>
 
-              {/* Reloj SVG dorado decorativo en la base */}
+              {/* Reloj real del interior animado */}
               <motion.div
-                className="flex flex-col items-center gap-1.5 opacity-60 mt-2"
-                animate={{ opacity: isClicked ? 0 : [0.4, 0.8, 0.4] }}
-                transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+                className="scale-75 origin-top mt-2"
+                animate={{ opacity: isClicked ? 0 : 0.7 }}
+                transition={{ duration: 0.5 }}
               >
-                <svg className="w-8 h-8 text-[#D4AF37]" viewBox="0 0 100 100" fill="none" stroke="currentColor">
-                  <circle cx="50" cy="50" r="45" strokeWidth="2.5" />
-                  <circle cx="50" cy="50" r="48" strokeWidth="1" strokeDasharray="3 3" />
-                  {/* Manecilla de la hora apuntando a las 12 */}
-                  <line x1="50" y1="50" x2="50" y2="24" strokeWidth="3.5" strokeLinecap="round" />
-                  {/* Manecilla de los minutos apuntando a las 12 */}
-                  <line x1="50" y1="50" x2="50" y2="16" strokeWidth="2" strokeLinecap="round" />
-                  <circle cx="50" cy="50" r="3" fill="#D4AF37" />
-                </svg>
-                <p className="text-[9px] tracking-[0.25em] uppercase text-[#89CFF0]" style={{ fontFamily: "var(--font-inter)" }}>
-                  La magia te espera
-                </p>
+                <ClockDecoration />
               </motion.div>
 
             </motion.div>
