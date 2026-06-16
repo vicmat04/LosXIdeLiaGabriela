@@ -29,7 +29,7 @@ export interface Event {
  * ─────────────────────────────────────────────────────────────────
  */
 export const receptionEvent: Event = {
-  time: "Sábado 11 de julio\n5:00 PM",
+  time: "Sábado 11 de julio\n7:00 PM",
   title: "Recepción",
   location: "Eventos Carolina",
   address: "Sigue el corazón hasta la magia ✨",
@@ -41,7 +41,7 @@ export const receptionEvent: Event = {
 
 export const receptionTimeline: Event[] = [
   {
-    time: "5:00 PM",
+    time: "7:00 PM",
     title: "Recepción de invitados",
     description: "Llegada de familiares y amigos (30-45 min), música ambiental.",
     icon: <FaUsers className="text-2xl" style={{ color: "#F1CF65" }} />,
