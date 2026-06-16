@@ -173,7 +173,7 @@ export default function Home() {
 
             <motion.p
               variants={itemVariants}
-              className="text-sm mb-5"
+              className="text-lg md:text-xl mb-5"
               style={{
                 fontFamily: "var(--font-cormorant)",
                 fontStyle: "italic",

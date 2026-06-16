@@ -18,7 +18,7 @@ export default function ClockDecoration() {
     >
       {/* Contenedor circular del reloj */}
       <div
-        className="relative w-24 h-24 rounded-full flex items-center justify-center"
+        className="relative w-24 h-24 rounded-full flex items-center justify-center scale-75 origin-bottom"
         style={{
           background: "radial-gradient(circle at 35% 35%, #1a2e45, #060E1A)",
           border: "2px solid rgba(212,175,55,0.5)",
@@ -103,7 +103,7 @@ export default function ClockDecoration() {
 
       {/* Texto debajo del reloj */}
       <p
-        className="text-xs tracking-[0.25em] uppercase"
+        className="text-sm md:text-base tracking-[0.25em] uppercase"
         style={{ fontFamily: "var(--font-inter)", color: "rgba(137,207,240,0.5)" }}
       >
         La magia comienza

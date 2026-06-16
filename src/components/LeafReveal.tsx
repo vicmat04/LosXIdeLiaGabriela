@@ -179,7 +179,7 @@ export default function LeafReveal({ onReveal }: { onReveal: () => void }) {
                 }}>
                   Lía Gabriela
                 </span>
-                <p className="text-xs px-2 mt-1" style={{
+                <p className="text-sm md:text-base px-2 mt-1" style={{
                   fontFamily: "var(--font-cormorant)",
                   fontStyle: "italic",
                   color: "rgba(224,224,224,0.75)",
@@ -200,8 +200,8 @@ export default function LeafReveal({ onReveal }: { onReveal: () => void }) {
                 <Image
                   src="/sello lia.png"
                   alt="Sello de Lacre Lía Gabriela"
-                  width={145}
-                  height={145}
+                  width={180}
+                  height={180}
                   className="object-contain drop-shadow-[0_0_20px_rgba(137,207,240,0.45)]"
                   priority
                 />

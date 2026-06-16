@@ -69,7 +69,7 @@ export default function PhotoGallery() {
                   src={src}
                   alt={`Lía Gabriela — Sesión de fotos ${index + 1}`}
                   fill
-                  className="object-contain"
+                  className="object-cover"
                   sizes="(max-width: 768px) 100vw, 384px"
                   priority={index === 0}
                   loading={index === 0 ? "eager" : "lazy"}
