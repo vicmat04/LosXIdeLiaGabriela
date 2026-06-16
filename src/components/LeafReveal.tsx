@@ -94,7 +94,7 @@ export default function LeafReveal({ onReveal }: { onReveal: () => void }) {
               transition={{ duration: 1.4, ease: [0.645, 0.045, 0.355, 1.0] }}
             >
               <Image
-                src="/photos/HEN_5248.jpg"
+                src="/photos/HEN_5164.jpg"
                 alt="Puerta del palacio derecha"
                 fill
                 className="object-cover object-center scale-110 opacity-50 mix-blend-luminosity"
@@ -165,17 +165,24 @@ export default function LeafReveal({ onReveal }: { onReveal: () => void }) {
               exit={{ scale: 0.8, opacity: 0, transition: { duration: 0.5 } }}
             >
               {/* Encabezados temáticos */}
-              <div className="flex flex-col items-center gap-1.5 mb-2">
-                <span className="text-3xl text-center leading-none" style={{
-                  fontFamily: "var(--font-great-vibes)",
-                  color: "#F1CF65",
-                  textShadow: "0 0 20px rgba(212,175,55,0.6)",
+              <div className="flex flex-col items-center gap-1 mb-2">
+                <p className="text-xs uppercase tracking-[0.25em] mb-0.5" style={{
+                  fontFamily: "var(--font-inter)",
+                  color: "rgba(137,207,240,0.7)",
                 }}>
                   Mis XV Años
+                </p>
+                <span className="text-4xl text-center leading-none" style={{
+                  fontFamily: "var(--font-great-vibes)",
+                  color: "#F1CF65",
+                  textShadow: "0 0 25px rgba(212,175,55,0.7), 0 0 60px rgba(137,207,240,0.2)",
+                }}>
+                  Lía Gabriela
                 </span>
-                <p className="text-xs uppercase tracking-widest text-[#E0E0E0]/80 px-2" style={{
+                <p className="text-xs px-2 mt-1" style={{
                   fontFamily: "var(--font-cormorant)",
                   fontStyle: "italic",
+                  color: "rgba(224,224,224,0.75)",
                 }}>
                   Te invitamos al gran baile del palacio
                 </p>

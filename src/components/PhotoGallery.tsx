@@ -12,23 +12,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-creative";
 
-/** Lista completa de fotos de la sesión de Lía Gabriela */
+/** Lista de fotos seleccionadas para el carrusel de Lía Gabriela */
 const photos = [
-  "/photos/HEN_5168.jpg",
-  "/photos/HEN_5182.jpg",
-  "/photos/HEN_5200.jpg",
-  "/photos/HEN_5205.jpg",
-  "/photos/HEN_5234.jpg",
-  "/photos/HEN_5260.jpg",
-  "/photos/HEN_5270.jpg",
-  "/photos/HEN_5278.jpg",
   "/photos/HEN_5290.jpg",
-  "/photos/HEN_5296.jpg",
-  "/photos/HEN_5299.jpg",
   "/photos/HEN_5315.jpg",
-  "/photos/HEN_5349.jpg",
-  "/photos/HEN_5395.jpg",
-  "/photos/HEN_5412.jpg",
+  "/photos/HEN_5260.jpg",
+  "/photos/HEN_5182.jpg",
+  "/photos/HEN_5196.jpg",
 ];
 
 /**

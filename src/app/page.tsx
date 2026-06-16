@@ -60,7 +60,7 @@ export default function Home() {
   // ──────────────────────────────────────────────────────────────
   //  FECHA DEL EVENTO: 11 de julio de 2026 a las 5:00 PM (Recepción)
   // ──────────────────────────────────────────────────────────────
-  const eventDate = "2026-07-11T17:00:00";
+  const eventDate = "2026-07-11T19:00:00";
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -81,7 +81,7 @@ export default function Home() {
       <div
         className="fixed inset-0 z-[-3] pointer-events-none"
         style={{
-          backgroundImage: "url('/photos/HEN_5162.jpg')",
+          backgroundImage: "url('/photos/HEN_5200.jpg')",
           backgroundSize: "auto 100vh",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
@@ -168,7 +168,7 @@ export default function Home() {
                 color: "rgba(137,207,240,0.6)",
               }}
             >
-              Con la bendición de Dios y el amor de
+              Con la bendición de Dios y el amor de mis padres.
             </motion.p>
 
             <motion.p
@@ -358,20 +358,11 @@ export default function Home() {
           {/*  CONTADOR REGRESIVO                                     */}
           {/* ────────────────────────────────────────────────────── */}
           <section className="flex flex-col items-center px-4 mb-4">
-            <motion.h2
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="text-3xl text-center mb-2"
-              style={{ fontFamily: "var(--font-cormorant)", color: "#D4AF37" }}
-            >
-              ✦ Faltan ✦
-            </motion.h2>
             <p
               className="text-xs tracking-widest uppercase mb-6"
               style={{ fontFamily: "var(--font-inter)", color: "rgba(137,207,240,0.5)" }}
             >
-              11 de Julio · 5:00 PM
+              11 de Julio · 7:00 PM
             </p>
             <Countdown targetDate={eventDate} />
           </section>
