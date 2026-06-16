@@ -443,37 +443,40 @@ export default function Home() {
           </section>
 
           {/* ── Marketing Footer — al final absoluto de la página ── */}
-          <div
-            className="mt-4 mb-10 text-center py-4 px-6 rounded-2xl inline-block mx-auto block"
-            style={{
-              background: "rgba(0,0,0,0.4)",
-              border: "1px solid rgba(137,207,240,0.08)",
-            }}
-          >
-            <a
-              href="https://wa.me/50767005805?text=Hola!%20Me%20encant%C3%B3%20esta%20invitaci%C3%B3n%20digital%20interactiva.%20Quisiera%20pedir%20informaci%C3%B3n%20para%20un%20evento."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group"
+          <div className="flex justify-center w-full mt-4 mb-12">
+            <div
+              className="text-center py-4 px-6 rounded-2xl"
+              style={{
+                background: "rgba(0,0,0,0.4)",
+                border: "1px solid rgba(137,207,240,0.08)",
+                maxWidth: "280px",
+              }}
             >
-              <p
-                className="text-[11px] leading-relaxed tracking-wider transition-colors duration-300"
-                style={{
-                  fontFamily: "var(--font-inter)",
-                  color: "rgba(137,207,240,0.5)",
-                }}
+              <a
+                href="https://wa.me/50767005805?text=Hola!%20Me%20encant%C3%B3%20esta%20invitaci%C3%B3n%20digital%20interactiva.%20Quisiera%20pedir%20informaci%C3%B3n%20para%20un%20evento."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group"
               >
-                Invitación interactiva diseñada con 💙<br />
-                ¿Te gustaría una para tu evento?{" "}
-                <br className="md:hidden" />
-                <span
-                  className="underline decoration-[#89CFF0]/40 underline-offset-4"
-                  style={{ color: "rgba(137,207,240,0.75)" }}
+                <p
+                  className="text-[11px] leading-relaxed tracking-wider transition-colors duration-300"
+                  style={{
+                    fontFamily: "var(--font-inter)",
+                    color: "rgba(137,207,240,0.5)",
+                  }}
                 >
-                  Contáctanos aquí
-                </span>
-              </p>
-            </a>
+                  Invitación interactiva diseñada con 💙<br />
+                  ¿Te gustaría una para tu evento?{" "}
+                  <br className="md:hidden" />
+                  <span
+                    className="underline decoration-[#89CFF0]/40 underline-offset-4"
+                    style={{ color: "rgba(137,207,240,0.75)" }}
+                  >
+                    Contáctanos aquí
+                  </span>
+                </p>
+              </a>
+            </div>
           </div>
 
         </motion.div>
