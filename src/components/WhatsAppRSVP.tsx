@@ -16,6 +16,7 @@ import { supabase } from "@/lib/supabase";
 
 // ── Números de WhatsApp (con código de país, sin el +) ──
 const MAMA_PHONE = "50768819451";
+const LIA_PHONE  = "50766947181";
 
 function buildWaLink(phone: string, message: string) {
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
@@ -29,6 +30,14 @@ const options = [
     phone: MAMA_PHONE,
     color: "from-[#0D1B2A]/60 to-[#112233]/60 border-[#D4AF37]/30 hover:bg-[#D4AF37]/10",
     iconColor: "text-[#F1CF65]",
+  },
+  {
+    id: "lia",
+    label: "Lía Gabriela",
+    sublabel: "Confirmar con la quinceañera",
+    phone: LIA_PHONE,
+    color: "from-[#0D1B2A]/60 to-[#112233]/60 border-[#89CFF0]/30 hover:bg-[#89CFF0]/10",
+    iconColor: "text-[#89CFF0]",
   },
 ] as const;
 
