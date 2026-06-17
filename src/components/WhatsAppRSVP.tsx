@@ -174,7 +174,7 @@ export default function WhatsAppRSVP({ isVisible = true }: { isVisible?: boolean
                         `¡Hola! Soy *${guestName.trim()}*. ` +
                         `Confirmo mi asistencia a los XV años de Lía Gabriela. ✨👑`;
 
-                      window.open(buildWaLink(opt.phone, customMessage), "_blank", "noopener,noreferrer");
+                      window.location.href = buildWaLink(opt.phone, customMessage);
 
                       setTimeout(() => {
                         setIsOpen(false);
