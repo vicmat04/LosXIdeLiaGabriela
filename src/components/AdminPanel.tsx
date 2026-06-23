@@ -56,17 +56,17 @@ export default function AdminPanel({ isOpen, onClose }: { isOpen: boolean; onClo
 
   const handleShare = () => {
     let text = "📋 *LISTA DE CONFIRMADOS - XV LÍA GABRIELA* 📋\n\n";
-    let totalAna = 0;
+    let totalLia = 0;
     let totalMama = 0;
 
     guests.forEach((g, i) => {
       text += `${i + 1}. ${g.name} (${g.confirmed_to})\n`;
-      if (g.confirmed_to === "Ana Victoria") totalAna++;
+      if (g.confirmed_to === "Lía Gabriela") totalLia++;
       else totalMama++;
     });
 
     text += `\n*TOTAL:* ${guests.length} invitados.`;
-    text += `\nCon Ana: ${totalAna} | Con Mamá: ${totalMama}`;
+    text += `\nCon Lía: ${totalLia} | Con Mamá: ${totalMama}`;
 
     const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank");
